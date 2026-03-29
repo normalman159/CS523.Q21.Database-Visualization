@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from pathlib import Path
 from typing import cast
 
 from PyQt6.QtGui import QColor
@@ -31,11 +30,10 @@ from ui.btree_view import BTreeView
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Student Database + B-tree Index Visualization")
+        self.setWindowTitle("Ứng dụng giả lập hệ quản trị CSDL đơn giản")
         self.resize(1200, 760)
 
         self.service = StudentService(degree=3)
-        self.data_file = Path("students.json")
 
         self._build_ui()
         self._apply_state(self.service.get_initial_state())
