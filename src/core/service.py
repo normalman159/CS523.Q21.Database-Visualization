@@ -67,15 +67,14 @@ class StudentService:
 
     def search_by_mssv(self, mssv: int) -> AppState:
         normalized = normalize_mssv(mssv)
-        path = self.btree.search_path(normalized)
         student = self.repo.get(normalized)
 
         if student is None:
             return self._state(
                 message=f"Không tìm thấy MSSV {normalized}.",
-                highlighted_node_ids=path,
             )
 
+        path = self.btree.search_path(normalized)
         return self._state(
             message=f"Tìm thấy MSSV {normalized}: {student.full_name}.",
             highlighted_node_ids=path,
